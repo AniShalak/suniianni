@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Full-Screen Layout</title>
+    <link rel="stylesheet" href="1.css">
+    <style>
+        /* Add any custom CSS here */
+        .hidden-text {
+            display: none; /* Initially hide the text */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="box box1">
+            <h1>aniashalak</h1>
+            <h2>graphic designer and photographer<br> based in Prague<br><br>
+                mob: +420 776-652-913<br>
+                mail to: aniashalak28@gmail.com<br>
+                ig: sunnniannni
+            </h2>
+                
+            <h3>
+                <a id="about-link" href="#">about</a><br>
+                <a id="archive-link" href="#">projects archive</a>
+            </h3>
+        </div>
+        <div class="box box2" id="box2">
+            <div class="grid-container">
+                <div class="frame" onclick="openNewLayout()">
+                    <img src="flower1.jpg" alt="Image 1">
+                    <div class="frame-text">№1 dont blink<br><br><br><br><br><br><br><br><br><br>2022</div>
+                </div>
+                <div class="frame" onclick="openNewLayout()">
+                    <img src="flower2.jpg" alt="Image 2">
+                    <div class="frame-text">№2 Howold he me<br><br><br><br><br><br><br><br><br><br>2022</div>
+                </div>
+                <div class="frame" onclick="openNewLayout()">
+                    <img src="flower3.jpg" alt="Image 3">
+                    <div class="frame-text">Text for Image 3</div>
+                </div>
+                <div class="frame" onclick="openNewLayout()">
+                    <img src="flower4.jpg" alt="Image 4">
+                    <div class="frame-text">Text for Image 4</div>
+                </div>
+                <div class="frame" onclick="openNewLayout()">
+                    <img src="flower5.jpg" alt="Image 5">
+                    <div class="frame-text">Text for Image 5</div>
+                </div>
+                <div class="frame" onclick="openNewLayout()">
+                    <img src="flower6.jpg" alt="Image 6">
+                    <div class="frame-text">Text for Image 6</div>
+                </div>
+                <div class="frame" onclick="openNewLayout()">
+                    <img src="flower7.jpg" alt="Image 7">
+                    <div class="frame-text">Text for Image 7</div>
+                </div>
+                <div class="frame" onclick="openNewLayout()">
+                    <img src="flower8.jpg" alt="Image 8">
+                    <div class="frame-text">Text for Image 8</div>
+                </div>
+                <div class="frame" onclick="openNewLayout()">
+                    <img src="flower9.jpg" alt="Image 9">
+                    <div class="frame-text">Text for Image 9</div>
+                </div>
+            </div>
+            <p>
+                <span id="page1" class="page-link" onclick="changeContent(1)">1</span>|
+                <span id="page2" class="page-link" onclick="changeContent(2)">2</span>
+    </p> 
+        </div>
+    
+
+         <script>
+            const frameContentPage1 = [
+                { imgSrc: "flower1.jpg", text: "№1 dont blink<br><br><br><br><br><br><br><br><br>2022" },
+                { imgSrc: "flower2.jpg", text: "№2 Howold he me<br><br><br><br><br><br><br><br><br>2022" },
+                { imgSrc: "flower3.jpg", text: "Text for Image 3" },
+                { imgSrc: "flower4.jpg", text: "Text for Image 4" },
+                { imgSrc: "flower5.jpg", text: "Text for Image 5" },
+                { imgSrc: "flower6.jpg", text: "Text for Image 6" },
+                { imgSrc: "flower7.jpg", text: "Text for Image 7" },
+                { imgSrc: "flower8.jpg", text: "Text for Image 8" },
+                { imgSrc: "flower9.jpg", text: "Text for Image 9" }
+            ];
+
+            const frameContentPage2 = [
+                { imgSrc: "v1.jpg", text: "Page 2 - Image 1 description" },
+                { imgSrc: "v2.jpg", text: "Page 2 - Image 2 description" },
+                { imgSrc: "v4.jpg", text: "Page 2 - Image 3 description" },
+                { imgSrc: "v3.jpg", text: "Page 2 - Image 4 description" },
+                { imgSrc: "v5.jpg", text: "Page 2 - Image 5 description" },
+                { imgSrc: "v6.jpg", text: "Page 2 - Image 6 description" },
+                { imgSrc: "v7.jpg", text: "Page 2 - Image 7 description" },
+                { imgSrc: "v8.jpg", text: "Page 2 - Image 8 description" },
+                { imgSrc: "v9.jpg", text: "Page 2 - Image 9 description" }
+            ];
+
+            // Function to change the content of the frames based on the selected page
+            function changeContent(pageNumber) {
+                const gridContainer = document.querySelector('.grid-container');
+                let selectedContent = (pageNumber === 1) ? frameContentPage1 : frameContentPage2;
+
+                // Clear the current grid content
+                gridContainer.innerHTML = '';
+
+                // Generate new frames based on the selected content
+                selectedContent.forEach(frameData => {
+                    const frame = document.createElement('div');
+                    frame.classList.add('frame');
+                    frame.setAttribute('onclick', 'openNewLayout()');
+
+                    const img = document.createElement('img');
+                    img.src = frameData.imgSrc;
+                    img.alt = frameData.text;
+
+                    const text = document.createElement('div');
+                    text.classList.add('frame-text');
+                    text.innerHTML = frameData.text;
+
+                    frame.appendChild(img);
+                    frame.appendChild(text);
+                    gridContainer.appendChild(frame);
+                });
+
+                // Optionally, style the active page number to indicate it's selected
+                document.getElementById('page1').style.fontWeight = (pageNumber === 1) ? 'bold' : 'normal';
+                document.getElementById('page2').style.fontWeight = (pageNumber === 2) ? 'bold' : 'normal';
+
+                // Change the hidden text based on the selected page
+                const archiveText = document.getElementById('archive-text');
+                const aboutText = document.getElementById('about-text');
+
+                if (pageNumber === 1) {
+                    archiveText.innerHTML = "01 Dogs<br>02 Who are you<br>03 Roses<br>04 Meeeeeet me in forest ful<br>05 I know you<br>06 I love you<br>07 Hello it banny ravvit<br>08 Men in sund<br>09 The last but not least";
+                    aboutText.innerHTML = "premised on the notion of ‘regenerative utility’, leather goods label Yu Mei calibrates the codes of luxury and functionality, always with reverence for the environment...";
+                    archiveText.style.display = 'block'; // Show archive text for Page 1
+                } else {
+                    archiveText.innerHTML = "bue bue"; // Custom message for Page 2
+                    aboutText.innerHTML = "hello hello"; // Change about text for Page 2
+                    archiveText.style.display = 'none'; // Hide archive text for Page 2
+                }
+            }
+
+            // Initialize the grid with page 1 content when the page loads
+            changeContent(1);
+        </script>
+
+        <div class="box box3" id="hidden-container">
+            <p class="hidden-text" id="about-text">premised on the notion of ‘regenerative utility’, leather goods label Yu Mei calibrates the codes of luxury and functionality, always with reverence for the environment. Founder Jessie Wong partnered with us to realise a comprehensive, ongoing rebrand grounded in the Yu Mei brand pillars of materiality, practicality and regeneration. With a view to accentuating premium functionality within a coherent aesthetic ecosystem, we took cues from the vocabulary of archiving and indexing to build a design system balanced on elegance and practicality.</p>
+            <p class="hidden-text" id="archive-text">01 Dogs<br>02 Who are you<br>03 Roses<br>04 Meeeeeet me in forest ful<br>05 I know you<br>06 I love you<br>07 Hello it banny ravvit<br>08 Men in sund<br>09 The last but not least</p>
+            <div class="clock" id="clock"></div>
+            <!-- Spotify Link -->
+            <a href="https://www.spotify.com" target="_blank" class="spotify-link">spotify</a>
+        </div>
+    </div>
+
+    <script>
+        // Get elements for 'about' link and text
+        const aboutLink = document.getElementById('about-link');
+        const aboutText = document.getElementById('about-text');
+        
+        // Get elements for 'projects archive' link and text
+        const archiveLink = document.getElementById('archive-link');
+        const archiveText = document.getElementById('archive-text');
+
+        // Hide the text initially
+        aboutText.style.display = 'none';
+        archiveText.style.display = 'none';
+
+        // Show 'About' text when the corresponding link is clicked
+        aboutLink.addEventListener('click', (event) => {
+            event.preventDefault();
+            aboutText.style.display = aboutText.style.display === 'block' ? 'none' : 'block';
+            archiveText.style.display = 'none'; // Hide archive text when about is shown
+        });
+
+        // Show 'Archive' text when the corresponding link is clicked
+        archiveLink.addEventListener('click', (event) => {
+            event.preventDefault();
+            archiveText.style.display = archiveText.style.display === 'block' ? 'none' : 'block';
+            aboutText.style.display = 'none'; // Hide about text when archive is shown
+        });
+
+        // Hide texts when clicking outside
+        document.body.addEventListener('click', (event) => {
+            if (!aboutLink.contains(event.target) && !archiveLink.contains(event.target) && !aboutText.contains(event.target) && !archiveText.contains(event.target)) {
+                aboutText.style.display = 'none';
+                archiveText.style.display = 'none';
+            }
+        });
+
+        // Update the clock every second
+        setInterval(() => {
+            const now = new Date();
+            const formattedTime = now.toLocaleTimeString();
+            document.getElementById('clock').textContent = formattedTime;
+        }, 1000);
+        
+    </script>
+    
+    <script >
+        
+// Define fullscreen content for Page 1
+const fullScreenContentPage1 = [
+    {
+        leftText: `<div class="lefttext"><p5>vinca minor</p5><br><br>
+the issue with left padding not working in your leftdiv is likely caused by the fact that you are using a flexbox layout with justifyContent and alignitems, which can sometimes override the expected behavior of padding in certain contexts. to ensure the padding works as expected, make sure you're applying it correctly, and the flexbox properties don't interfere with it. Here's a step-by-step breakdown to troubleshoot and fix it</div>`,
+        rightContent: `<div class="right-content">
+            <div class="half-images">
+                <img src="shi.gif" class="half-img" alt="Image 2">
+                <img src="poster2.jpg" class="half-img" alt="Image 2">
+            </div>
+ <img src="z10.jpg">
+        </div>`
+    },
+    {
+        leftText: "Hello from Page 1, Frame 2!",
+        rightContent: `<div style="width: 100px; height: 100px; background-color: blue;"></div>`
+    },
+    {
+        leftText: "Hello from Page 1, Frame 3!",
+        rightContent: `<div style="width: 100px; height: 100px; background-color: green;"></div>`
+    },
+    {
+        leftText: "Hello from Page 1, Frame 4!",
+        rightContent: `<div style="width: 100px; height: 100px; background-color: orange;"></div>`
+    },
+    {
+        leftText: "Hello from Page 1, Frame 5!",
+        rightContent: `<div style="width: 100px; height: 100px; background-color: yellow;"></div>`
+    },
+    {
+        leftText: "Hello from Page 1, Frame 6!",
+        rightContent: `<div style="width: 100px; height: 100px; background-color: purple;"></div>`
+    },
+    {
+        leftText: "Hello from Page 1, Frame 7!",
+        rightContent: `<div style="width: 100px; height: 100px; background-color: pink;"></div>`
+    },
+    {
+        leftText: "Hello from Page 1, Frame 8!",
+        rightContent: `<div style="width: 100px; height: 100px; background-color: cyan;"></div>`
+    },
+    {
+        leftText: "Hello from Page 1, Frame 9!",
+        rightContent: `<div style="width: 100px; height: 100px; background-color: magenta;"></div>`
+    },
+];
+
+// Define fullscreen content for Page 2
+const fullScreenContentPage2 = [
+    {
+        leftText: `<div class="lefttext"><p5>ph01</p5><br><br>
+the issue with left padding not working in your leftdiv is likely caused by the fact that you are using a flexbox layout with justifyContent and alignitems, which can sometimes override the expected behavior of padding in certain contexts. to ensure the padding works as expected, make sure you're applying it correctly, and the flexbox properties don't interfere with it. Here's a step-by-step breakdown to troubleshoot and fix it</div>`,
+        rightContent: `<div class="right-content">
+ <img src="a.jpg"> 
+ <img src="a2.jpg">
+        </div>`
+    },
+    {
+        leftText: "Welcome to Page 2, Frame 2!",
+        rightContent: `<div style="width: 100px; height: 100px; background-color: yellow;"></div>`
+    },
+    {
+        leftText: "Welcome to Page 2, Frame 3!",
+        rightContent: `<div style="width: 100px; height: 100px; background-color: green;"></div>`
+    },
+    {
+        leftText: "Welcome to Page 2, Frame 4!",
+        rightContent: `<div style="width: 100px; height: 100px; background-color: blue;"></div>`
+    },
+    {
+        leftText: "Welcome to Page 2, Frame 5!",
+        rightContent: `<div style="width: 100px; height: 100px; background-color: orange;"></div>`
+    },
+    {
+        leftText: "Welcome to Page 2, Frame 6!",
+        rightContent: `<div style="width: 100px; height: 100px; background-color: pink;"></div>`
+    },
+    {
+        leftText: "Welcome to Page 2, Frame 7!",
+        rightContent: `<div style="width: 100px; height: 100px; background-color: teal;"></div>`
+    },
+    {
+        leftText: "Welcome to Page 2, Frame 8!",
+        rightContent: `<div style="width: 100px; height: 100px; background-color: gray;"></div>`
+    },
+    {
+        leftText: "Welcome to Page 2, Frame 9!",
+        rightContent: `<div style="width: 100px; height: 100px; background-color: violet;"></div>`
+    },
+];
+
+
+    let currentPage = 1;  // Track the current page
+
+   function openNewLayout(frameIndex) {
+    const fullScreenLayout = document.createElement('div');
+    fullScreenLayout.style.position = 'fixed';
+    fullScreenLayout.style.top = '0';
+    fullScreenLayout.style.left = '0';
+    fullScreenLayout.style.width = '100vw';
+    fullScreenLayout.style.height = '100vh';
+    fullScreenLayout.style.display = 'flex';
+    fullScreenLayout.style.backgroundColor = '#ffffff'; // Semi-transparent background
+
+    // Select the content based on the current page
+    const fullScreenContent = (currentPage === 1) ? fullScreenContentPage1[frameIndex] : fullScreenContentPage2[frameIndex];
+
+    // Create two containers (one for left text, one for right content)
+    const leftDiv = document.createElement('div');
+
+       leftDiv.style.flex = '0.25'; // Adjust flex for left container (e.g., 30% of the width)
+leftDiv.style.padding = '1.5rem'; // Add padding for text (2rem is just an example, adjust as needed)
+leftDiv.style.paddingTop = '0.5rem';
+leftDiv.style.display = 'flex'; // Enable flexbox for centering
+leftDiv.style.flexDirection = 'column'; // Vertical stacking of elements
+leftDiv.style.alignItems = 'flex-start'; // Align text horizontally to the left
+leftDiv.style.color = 'black'; // Set text color
+leftDiv.style.fontSize = '24px'; // Adjust the font size
+leftDiv.style.backgroundColor = 'rgba(255, 255, 255, 0.8)'; // Half-transparent background
+leftDiv.innerHTML = `<p>${fullScreenContent.leftText}</p>`;
+leftDiv.style.textAlign = 'left'; // Align text to the left
+
+
+
+    const rightDiv = document.createElement('div');
+    rightDiv.style.flex = '0.84'; // Adjust flex for right container (e.g., 70% of the width)
+    rightDiv.style.padding = '0'; // Add padding for content
+    rightDiv.innerHTML = fullScreenContent.rightContent;
+    rightDiv.style.overflowY = 'auto'; // Allow vertical scrolling
+    rightDiv.style.backgroundColor = 'rgba(255, 255, 255, 0.8)'; // Half-transparent green
+
+    // Hide the scrollbar (works on WebKit browsers)
+    rightDiv.style.scrollbarWidth = 'none'; // For Firefox
+    rightDiv.style.msOverflowStyle = 'none'; // For Internet Explorer and Edge
+
+    // Create a close button
+    const closeButton = document.createElement('button');
+    closeButton.textContent = 'Close';
+    closeButton.style.position = 'absolute';
+    closeButton.style.top = '20px';
+    closeButton.style.right = '20px';
+    closeButton.style.padding = '10px 20px';
+    closeButton.style.fontSize = '18px';
+    closeButton.style.backgroundColor = '#fff';
+    closeButton.style.border = 'none';
+    closeButton.style.cursor = 'pointer';
+
+    // Add event listener to close button to return to the original content
+    closeButton.addEventListener('click', function() {
+        document.body.removeChild(fullScreenLayout); // Remove full-screen layout
+    });
+
+    // Append elements to full-screen layout
+    fullScreenLayout.appendChild(leftDiv);
+    fullScreenLayout.appendChild(rightDiv);
+    fullScreenLayout.appendChild(closeButton);
+
+    // Append full-screen layout to the body
+    document.body.appendChild(fullScreenLayout);
+}
+
+
+
+
+    // Function to change the content of the frames based on the selected page
+    function changeContent(pageNumber) {
+        currentPage = pageNumber; // Update the current page number
+        const gridContainer = document.querySelector('.grid-container');
+        let selectedContent = (pageNumber === 1) ? frameContentPage1 : frameContentPage2;
+
+        // Clear the current grid content
+        gridContainer.innerHTML = '';
+
+        // Generate new frames based on the selected content
+        selectedContent.forEach((frameData, index) => {
+            const frame = document.createElement('div');
+            frame.classList.add('frame');
+            frame.setAttribute('onclick', `openNewLayout(${index})`);  // Pass frame index to openNewLayout
+
+            const img = document.createElement('img');
+            img.src = frameData.imgSrc;
+            img.alt = frameData.text;
+
+            const text = document.createElement('div');
+            text.classList.add('frame-text');
+            text.innerHTML = frameData.text;
+
+            frame.appendChild(img);
+            frame.appendChild(text);
+            gridContainer.appendChild(frame);
+        });
+
+        // Style the active page number to indicate it's selected
+        document.getElementById('page1').style.fontWeight = (pageNumber === 1) ? 'bold' : 'normal';
+        document.getElementById('page2').style.fontWeight = (pageNumber === 2) ? 'bold' : 'normal';
+        
+        // Update hidden text based on the selected page
+    const aboutText = document.getElementById('about-text');
+    const archiveText = document.getElementById('archive-text');
+
+    if (pageNumber === 1) {
+        aboutText.innerHTML = "premised on the notion of ‘regenerative utility’, leather goods label Yu Mei calibrates the codes of luxury and functionality, always with reverence for the environment and here we are";
+        archiveText.innerHTML = "01 Dogs<br>02 Who are you<br>03 Roses<br>04 Meeeeeet me in forest ful<br>05 I know you<br>06 I love you<br>07 Hello it banny ravvit<br>08 Men in sund<br>09 The last but not least";
+        
+    } else {
+        aboutText.innerHTML = "Welcome to Page 2 content!";
+        archiveText.innerHTML = "bue bue"; // Custom message for Page 2
+        archiveText.style.display = 'none'; // Hide archive text for Page 2
+    }
+    }
+
+    // Initialize the grid with page 1 content when the page loads
+    changeContent(1);
+
+
+        
+    </script>
+
+</body>
+</html>
